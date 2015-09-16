@@ -5,8 +5,8 @@ import re
 class Kata04Table(object):
     record_pattern = '^(\s*\d+)'
 
-    def __init__(self, filename):
-        self.filename = filename
+    def __init__(self, datasource):
+        self.datasource = datasource
         self.records = None
         self.read()
 
@@ -14,8 +14,11 @@ class Kata04Table(object):
         return min(self.records, key=lambda r: abs(r[1] - r[2]))
 
     def read(self):
-        with open(self.filename, 'r') as tablefile:
-            lines = tablefile.readlines()
+        if hasattr(self.datasource, 'readlines'):
+            lines = self.datasource.readlines()
+        else:
+            with open(self.datasource, 'r') as tablefile:
+                lines = tablefile.readlines()
 
         table_lines = filter(lambda l: re.search(self.record_pattern, l), lines)
         self.records = [self.read_record(table_line.strip()) for table_line in table_lines]

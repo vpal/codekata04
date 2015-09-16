@@ -1,5 +1,5 @@
 import unittest
-import StringIO
+from StringIO import StringIO
 
 from codekata04.kata04_part_three import Kata04WeatherTable
 
@@ -12,7 +12,7 @@ weather_test_records = [
 class TestKata04WeatherTable(unittest.TestCase):
     def test_record_creation(self):
         for test_record in weather_test_records:
-            ds = StringIO.StringIO(test_record[0])
+            ds = StringIO(test_record[0])
             wt = Kata04WeatherTable(ds)
             self.assertEqual(len(wt.records), 1)
             self.assertEqual(wt.records[0][0], test_record[1][0])
@@ -20,7 +20,9 @@ class TestKata04WeatherTable(unittest.TestCase):
             self.assertEqual(wt.records[0][2], test_record[1][2])
 
     def test_min_diff(self):
-        self.assertTrue(True)
+        ds = StringIO('\n'.join([weather_test_record[0] for weather_test_record in weather_test_records]))
+        wt = Kata04WeatherTable(ds)
+        self.assertEqual(wt.min_diff()[0], 1)
 
 if __name__ == '__main__':
     unittest.main()

@@ -21,5 +21,6 @@ def main():
 
     print(day)
 
+
 if __name__ == '__main__':
     main()

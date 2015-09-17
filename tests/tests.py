@@ -38,7 +38,7 @@ class TestKata04WeatherTable(Kata04Tests):
         super(TestKata04WeatherTable, self).common_test_min_diff()
 
 
-class TestKata04FootballTable(Kata04Tests, unittest.TestCase):
+class TestKata04FootballTable(Kata04Tests):
     target_class = Kata04FootballTable
     test_items = [
         ('    6. Chelsea         38    17  13   8    66  -  38    64', ('Chelsea', 66, 38)),
